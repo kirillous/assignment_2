@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="/home.css">
+    <script src="/home.js" defer></script>  
+</head>
+<body>
+  <!-- navbar -->
+    <nav class="navbar">
+        <div class="container-fluid justify-content-between">
+            <a class = "navbar-brand">Students</a>
+            <ul class="nav">
+              <li class="nav-item me-3">
+                <a class="nav-link active" href="#">
+                  <a class="nav-link active btn btn-primary" href="/sthist">Histogram</a>
+                </a>
+              </li>
+                <li class="nav-item me-2">
+                  <a class="nav-link active" aria-current="page" href="#">
+                    <a class="nav-link active btn btn-primary" data-bs-toggle="modal" data-bs-target="#newModal" aria-current="page" href="#">Add student</a>
+                  </a>
+                </li>
+              </ul>
+        </div>
+    </nav>
+    <!-- new student modal -->
+    <div class="modal fade" id="newModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true" data-bs-backdrop="static">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="ModalTitle">New student</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="/add" method="post">
+              <div class="mb-3 row justify-content-between">
+                <label class="col-sm-2 col-form-label">First</label>
+                <div class="col-sm-6 me-5">
+                  <input type="text" class="form-control" name="first">
+                </div>
+              </div>
+              <div class="mb-3 row justify-content-between">
+                <label class="col-sm-2 col-form-label">Last</label>
+                <div class="col-sm-6 me-5">
+                  <input type="text" class="form-control" name="last">
+                </div>
+              </div>
+              <div class="mb-3 row justify-content-between">
+                <label class="col-sm-2 col-form-label">Height(cm)</label>
+                <div class="col-sm-6 me-5">
+                  <input type="text" class="form-control" name="height" min="0" max="300">
+                </div>
+              </div>
+              <div class="mb-3 row justify-content-between">
+                <label class="col-sm-2 col-form-label">Weight(kg)</label>
+                <div class="col-sm-6 me-5">
+                  <input type="text" class="form-control" name="weight" min="0" max="300">
+                </div>
+              </div>
+              <div class="mb-3 row justify-content-between">
+                <label class="col-sm-2 col-form-label">GPA</label>
+                <div class="col-sm-6 me-5">
+                  <input type="text" class="form-control" name="gpa">
+                </div>
+              </div>
+              <div class="modal-footer justify-content-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- table with students -->
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Height</th>
+            <th scope="col">Weight</th>
+            <th scope="col">GPA</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="user:${us}">
+            <td th:text="${user.uid}"></td>
+            <td th:text="${user.first}"></td>
+            <td th:text="${user.last}"></td>
+            <td th:text="${user.height}"></td>
+            <td th:text="${user.weight}"></td>
+            <td th:text="${user.gpa}"></td>
+            <td><a class="nav-link active btn btn-primary" data-bs-toggle="modal" 
+              data-bs-target="#editModal" aria-current="page" href="#" th:attr="onclick='selectUserId(' +${user.uid}+ ')'">
+              Edit
+            </a></td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- edit modal -->
+      <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="ModalTitle">Edit student info</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form action="/users/edit" method="post">
+                <input type="hidden" name="uid" id="editUid">
+                <div class="mb-3 row justify-content-between">
+                  <label class="col-sm-2 col-form-label">First</label>
+                  <div class="col-sm-6 me-5">
+                    <input type="text" class="form-control" id="first" name="first">
+                  </div>
+                </div>
+                <div class="mb-3 row justify-content-between">
+                  <label class="col-sm-2 col-form-label">Last</label>
+                  <div class="col-sm-6 me-5">
+                    <input type="text" class="form-control" id="last" name="last">
+                  </div>
+                </div>
+                <div class="mb-3 row justify-content-between">
+                  <label class="col-sm-2 col-form-label">Height</label>
+                  <div class="col-sm-6 me-5">
+                    <input type="text" class="form-control" id="height" name="height" min="0" max="300">
+                  </div>
+                </div>
+                <div class="mb-3 row justify-content-between">
+                  <label class="col-sm-2 col-form-label">Weight</label>
+                  <div class="col-sm-6 me-5">
+                    <input type="text" class="form-control" id="weight" name="weight" min="0" max="300">
+                  </div>
+                </div>
+                <div class="mb-3 row justify-content-between">
+                  <label class="col-sm-2 col-form-label">GPA</label>
+                  <div class="col-sm-6 me-5">
+                    <input type="text" class="form-control" id="gpa" name="gpa">
+                  </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" aria-current="page" href="#" data-bs-dismiss="modal">Delete</button>
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- delete modal -->
+      <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="ModalTitle">Delete student</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body justify-content-center">
+              Are you sure you want to delete this student?
+            </div>
+            <div class="modal-footer justify-content-center">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">no</button>
+              <form action="/delete" method="post">
+                <input type="hidden" name="id" id="deleteModalUID">
+                <button type="submit" class="btn btn-danger" onclick="prepareDeleteModal()">yes</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" 
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" 
+    integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    color: white;
+    transform: scale(1.02);
+}
+.navbar-brand{
+    font-size: 50px;
+    font-weight: bold;
+}
+body{
+    background-color: #2d2d2d;
+    color: #FFFFFF
+}
+.navbar{
+    background-color: #1a1a1a;
+}
+.nav-link{
+    color: #FFFFFF;
+}
+.table,
+.table thead,
+.table tbody,
+.table td,
+.table tr {
+  background-color: #3A3A3A;
+  border-color: #1A1A1A;
+  color: #FFFFFF;
+}
+.table th {
+    color: #FFFFFF;
+    background-color: #1A1A1A;
+  }
+  
+.btn-primary{
+    background-color: #1a1a1a;
+    border-color: #1a1a1a;
+    color: #FFFFFF;
+}
+.btn-danger{
+    background-color: #FF0000;
+    border-color: #FF0000;
+}
+.navbar-brand{
+    color: #FFFFFF;
+}
+.modal .modal-dialog .modal-content {
+    background-color: #2c2f33;
+    color: #ffffff;
+}
+
+.modal-contenet{
+    background-color: #2c2f33;
+    color:#FFFFFF
+}
+.modal-header,
+.modal-footer{
+    border-color: #23272a;
+}
+.btn-close{
+    color:#FFFFFF;
+}
+.modal-content input[type="text"]{
+    background-color: #23272a;
+    color: #FFFFFF;
+    border-color: #2c2f33;
+}
+.modal-content input[type="text"]::placeholder{
+    color: #8d9aa0;
+}
+.modal-contenet label{
+    color:#FFFFFF;
+}
+.modal-footer .btn-primary,
+.modal-footer .btn-danger{
+    color: #FFFFFF;
+    border-color: #2c2f33;
+}
+.modal-footer .btn-danger{
+    background-color: #f04747;
+}
+.box {
+    display: inline-block;
+    margin: 10px;
+    border: 2px solid #FFFFFF;
+    background-color: #3A3A3A;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 1em;
+    line-height: 1.5;
+    overflow: hidden;
+    padding: 5px;
+    box-sizing: border-box;
+    align-items: center;
+}
+.box p{
+    margin: 0.5rem 0;
+    line-height: 1.2;
+}
