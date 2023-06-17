@@ -17,19 +17,18 @@ import com.assignment_2.assignment_2.models.UserRepository;
 
 import jakarta.servlet.http.HttpServletResponse;
 
-//deploy
 @Controller
 public class UserController {
 
     @Autowired
     private UserRepository userRepo;
 
-    @GetMapping("/sthist")
+    @GetMapping("/users/hist")
     public String showHistogram(Model model) {
         System.out.println("open histogram page");
         List<User> users = userRepo.findAll();
         model.addAttribute("us", users);
-        return "/users/sthist";
+        return "users/sthist";
     }
 
     @GetMapping("/users/students")
